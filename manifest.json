@@ -1,0 +1,16 @@
+{
+  "name": "datatables",
+  "version": "1.0.0",
+  "size": {
+    "width": 6,
+    "height": 3
+  },
+  "mapping": [
+    {
+      "dataSetId": "a88fed68-ba80-44e5-9e5e-df5e2ee137b3",
+      "alias": "udon_tracker",
+      "fields": []
+    }
+  ],
+  "id": "725886f0-d6a8-42e1-ab4f-5d1c94be1cf0"
+}
