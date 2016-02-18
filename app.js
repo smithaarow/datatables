@@ -10,7 +10,21 @@ domo.get('/data/v1/udon_tracker')
          scrollY:        '75vh',
         scrollCollapse: true,
         paging:         false,
-      
+      drawCallback: function ( settings ) {
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
+ 
+            api.column(3, {page:'current'} ).data().each( function ( squad_value, i ) {
+                if ( last !== squad_value ) {
+                    $(rows).eq( i ).before(
+                        '<tr class="squad_value"><td colspan="5">'+squad_value+'</td></tr>'
+                    );
+ 
+                    last = squad_value;
+                }
+            } );
+        },
         
            data: udon_tracker,
             columns: [
