@@ -1,183 +1,222 @@
-// Table Styles
+@import url('http://fonts.googleapis.com/css?family=Open+Sans');
+@import url('http://fonts.googleapis.com/css?family=PT+Sans');
+@import url('http://fonts.googleapis.com/css?family=Helvetica Neue');
 
-// flexbox support for scroll-y
-
-@mixin dt-display-flex {
-  display: -webkit-flex; // support for responsive scroll-y
-  display: -ms-flexbox;
-  display: flex;
-}
-@mixin dt-flex-11a {
-  -webkit-flex: 1 1 auto;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
-}
-@mixin dt-flex-100 {
-  -webkit-flex: 1 0 0px;
-  -ms-flex: 1 0 0px;
-  flex: 1 0 0px;
-}
-@mixin dt-flex-vertical {
-  -webkit-flex-flow: column nowrap;
-  -ms-flex-flow: column nowrap;
-  flex-flow: column nowrap;
+body{
+    color: rgba(0,0,0,0.8);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    margin: 0;
 }
 
-// codepen example support
-html, body {
-  height:100%;
-  width: 100%;
-  max-width: 100%;
-  overflow-y: hidden;
+
+/* ---------
+Typography
+--------- */
+h1,h2,h3 {
+    margin: 0;
+    padding: 0;
+}
+h1 {
+    font-size: 18px;
 }
 
-// core layout
-
-.container {
-  @include dt-display-flex;
-  @include dt-flex-11a;
-  height: 80%; // codepen - vary to see flex rule in action
-  width: 60%;  // codepen - vary to see flex rule in action
-  //  code rules to better identify container visually
-  background-color: #f0f0f0;
-  border: 1px solid blue;
-  margin-top: 1rem;
-  padding: 1rem;
+/* ---------
+States
+--------- */
+.importance-primary {
+    opacity: 0.8;
+}
+.importance-secondary {
+    opacity: 0.6;
+}
+.importance-tertiary {
+    opacity: 0.3;
+}
+.not-mobile {
+    visibility: hidden;
 }
 
-.dataTables_wrapper {
-  width: 100%;
-  overflow: hidden;
-  -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-  @include dt-display-flex;
-  @include dt-flex-vertical;
-  @include dt-flex-11a;
+
+/* ---------
+Tables
+--------- */
+table {
+    border-collapse: collapse;
+    font-size: 14px;
+    font-weight: 300;
+    width: 100%;
+}
+th {
+    text-align: left;
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+}
+th,
+td {
+    padding: 5px;
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+}
+tr.odd {
+    background: rgba(0,0,0,0.01);
+}
+tr:hover td {
+    background: rgba(153, 204, 238, 0.1);
+    /*background: rgba(0,0,0,0.03);*/
+}
+th:last-child,
+td:last-child {
+    text-align: right;
 }
 
-table.dataTable {
-  background-color: #fff;
-  width: 100%;
-  margin: 0 auto;
-  clear: both;
-  border-collapse: separate;
-  border-spacing: 0;
+
+/* ---------
+dataTables
+--------- */
+.dataTables_length,
+.dataTables_filter,
+.dataTables_info,
+.dataTables_paginate {
+    display: inline-block;
+    padding: 20px 0 15px 0;
+}
+.dataTables_info {
+    opacity: .6;
+}
+.dataTables_paginate {
+    float: right;
+}
+.dataTables_filter {
+    float: right;
+}
+th.issue_key {
+    min-width: 90px;
+    max-width: 90px;
+}
+th.priority_name {
+    max-width: 100px;
 }
 
-// header
-
-table.dataTable thead,
-table.dataTable tfoot {
-  background-color: #f5f5f5;
+/* Table Filter */
+.dataTables_filter input {
+    margin-left: 10px;
+    height: 25px;
+    font-size: 22px;
 }
 
-table.dataTable thead th,
-table.dataTable tfoot th {
-  font-weight: bold;
-  border-bottom: 1px solid #111111;
+/* Pagination */
+.dataTables_paginate a {
+    padding: 5px 8px;
+    cursor: pointer;
+}
+.dataTables_paginate a.current:hover,
+.dataTables_paginate a.current {
+    color: rgba(0,0,0,1);
+    font-weight: bold;
+    text-decoration: underline;
+}
+.dataTables_paginate a:hover {
+    background: rgba(0,0,0,0.08);
+}
+.dataTables_paginate a.disabled {
+    display: none;
 }
 
-table.dataTable thead th:active,
-table.dataTable thead td:active {
-  outline: none;
+
+
+/* ---------
+Containers
+--------- */
+.container-full {
+    width: 95%;
+    margin: 0 auto;
+}
+.container-overflowing {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 0;
+    min-width: 100%;
 }
 
-// rows
 
-table.dataTable tr.even,
-table.dataTable tr.alt,
-table.dataTable tr:nth-of-type(even) {
-  background: #F9F9F9;
+
+/* ---------
+Sections
+--------- */
+.align-left {
+    display: inline-block;
+    float: left;
 }
-
-// compact toggle
-// table.dataTable.dt-compact th,
-// table.dataTable.dt-compact td {
-// font-size: .875rem;
-// padding: .5rem .625rem;
-// text-align: left;
-// white-space: nowrap;
-// }
-
-table.dataTable th,
-table.dataTable td {
-  padding: 1rem;
-  white-space: nowrap;
-  text-align: left;
+.align-right {
+    display: inline-block;
+    float: right;
+}
+.clearfix {
+    overflow: auto;
 }
 
-table.dataTable tfoot th,
-table.dataTable tfoot td {
-  border-top: 1px solid #111111;
+#section-header {
+    padding: 30px 0 0 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    /*background: rgba(71,176,237,1);*/
+    /*background: -moz-linear-gradient(-45deg, rgba(71,176,237,1) 0%, rgba(37,159,230,1) 100%);*/
+    /*background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(71,176,237,1)), color-stop(100%, rgba(37,159,230,1)));*/
+    /*background: -webkit-linear-gradient(-45deg, rgba(71,176,237,1) 0%, rgba(37,159,230,1) 100%);*/
+    /*background: -o-linear-gradient(-45deg, rgba(71,176,237,1) 0%, rgba(37,159,230,1) 100%);*/
+    /*background: -ms-linear-gradient(-45deg, rgba(71,176,237,1) 0%, rgba(37,159,230,1) 100%);*/
+    /*background: linear-gradient(135deg, rgba(71,176,237,1) 0%, rgba(37,159,230,1) 100%);*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#47b0ed', endColorstr='#259fe6', GradientType=1 );*/
+}
+#section-main {
+    padding: 0 0 20px 0;
+}
+#section-navigation {
+    padding: 20px 0;
+}
+#section-navigation {
+
+}
+#section-navigation a {
+    padding: 5px 10px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+#section-navigation a:hover {
+    background: rgba(153, 204, 238, 0.2);
+}
+#section-navigation a.active:hover,
+#section-navigation a:active,
+#section-navigation a.active {
+    background: rgba(0,0,0,0.6);
+    color: white;
 }
 
-// hover indicator(s)
 
-table.dataTable tbody > tr:hover {
-  background-color: lightblue;
-}
-
-// scroll-x and scroll-y support
-// content-box rule is critical
-
-table.dataTable,
-table.dataTable th,
-table.dataTable td {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-}
-.dataTables_wrapper .dataTables_scroll {
-  clear: both;
-  @include dt-display-flex;
-  @include dt-flex-vertical;
-  @include dt-flex-11a;
-  // codepen rules to better identify scroll wrapper
-  border: 1px solid #ccc;
-  margin: 1.5rem 0
+.days-on-tki {
+    display: inline-block;
+    padding-right: 5px;
 }
 
-.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody {
-  @include dt-flex-100;
-  margin-top: -1px;
-  -webkit-overflow-scrolling: touch;
-}
 
-.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody th > div.dataTables_sizing,
-.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody td > div.dataTables_sizing {
-  height: 0;
-  overflow: hidden;
-  margin: 0 !important;
-  padding: 0 !important;
-}
 
-.dataTables_wrapper:after {
-  visibility: hidden;
-  display: block;
-  content: "";
-  clear: both;
-  height: 0;
-}
+/* ---------
+Media Queries
+--------- */
 
-// column sorting indicators
-
-table.dataTable thead .sorting_asc,
-table.dataTable thead .sorting_desc,
-table.dataTable thead .sorting {
-  cursor: pointer;
-}
-table.dataTable thead .sorting {
-  background: url("../img/datatables/sort_both.png") no-repeat center right;
-}
-table.dataTable thead .sorting_asc {
-  background: url("../img/datatables/sort_asc.png") no-repeat center right;
-}
-table.dataTable thead .sorting_desc {
-  background: url("../img/datatables/sort_desc.png") no-repeat center right;
-}
-table.dataTable thead .sorting_asc_disabled {
-  background: url("../img/datatables/sort_asc_disabled.png") no-repeat center right;
-}
-table.dataTable thead .sorting_desc_disabled {
-  background: url("../img/datatables/sort_desc_disabled.png") no-repeat center right;
+/* iPhone 6 Portrait */
+@media only screen and (max-width: 667px) {
+    section {
+        width: 100%;
+        text-align: center;
+    }
+    .mobile {
+        visibility: visible;
+    }
+    .mobile-full {
+        width: 100%;
+        text-align: center;
+        display: block;
+        padding: 15px 0;
+    }
 }
