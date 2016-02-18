@@ -54,7 +54,7 @@ th {
 }
 th,
 td {
-    padding: 5px;
+    padding: 5px 10px;
     border-bottom: 1px solid rgba(0,0,0,0.03);
 }
 tr.odd {
@@ -219,4 +219,31 @@ Media Queries
         display: block;
         padding: 15px 0;
     }
+}
+
+
+/* ---------
+Tracker App Specific
+--------- */
+td {
+    border: 1px solid rgba(0,0,0,0.03);
+    vertical-align: top;
+}
+.is_shipstopper {
+    min-width: 100px;
+}
+.squad_value {
+    min-width: 100px;
+}
+.summary {
+    min-width: 400px;
+}
+.squad_value_group {
+    background: rgba(0,0,0,.7);
+}
+.squad_value_group td {
+    text-align: left;
+    border: 0;
+    color: white;
+    font-size: .7rem;
 }

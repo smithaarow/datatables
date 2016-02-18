@@ -14,7 +14,7 @@ domo.get('/data/v1/udon_tracker')
                 api.column(3, {page:'current'} ).data().each( function ( squad_value, i ) {
                     if ( last !== squad_value ) {
                         $(rows).eq( i ).before(
-                            '<tr class="squad_value"><td colspan="5">'+squad_value+'</td></tr>'
+                            '<tr class="squad_value_group"><td colspan="42">'+squad_value+'</td></tr>'
                         );
 
                         last = squad_value;
@@ -25,29 +25,40 @@ domo.get('/data/v1/udon_tracker')
             columns: [
                 {
                     data: "is_shipstopper_sort",
+                    class: "is_shipstopper",
                     title: "ship stopper",
                     visible: false
                 },
                 {
                     data: "issue_key",
+                    class: "issue_key",
                     title: "Jira Number"
                 },
                 
                 {
                     data: "is_shipstopper",
+                    class: "is_shipstopper",
                     title: "ship stopper"
                 },
                 {
                     data: "squad_value",
-                    title: "Squad"
+                    class: "squad_value",
+                    title: "Squad",
+                    "render": function ( data, type, full, meta ) {
+                        return '<div class="container-overflowing">'+data+'</div>';
+                    },
                 },
                 {
                     data: "summary",
-                    title: "Summary",
-                    width: "2"
+                    class: "summary",
+                    title: "domoSummary",
+                    "render": function ( data, type, full, meta ) {
+                        return '<div class="container-overflowing">'+data+'</div>';
+                    },
                 },
                 {
                     data: "Fix Version/s" ,
+                    class: "fix-versions" ,
                     title: "Fix Version"
                 },
                 {
