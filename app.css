@@ -238,10 +238,10 @@ td {
 .summary {
     min-width: 400px;
 }
-.squad_value_group {
+.Phase_group {
     background: rgba(0,0,0,.7);
 }
-.squad_value_group td {
+.Phase_group td {
     text-align: left;
     border: 0;
     color: white;

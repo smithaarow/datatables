@@ -11,18 +11,24 @@ domo.get('/data/v1/udon_tracker')
                 var api = this.api();
                 var rows = api.rows( {page:'current'} ).nodes();
                 var last=null;
-                api.column(3, {page:'current'} ).data().each( function ( squad_value, i ) {
-                    if ( last !== squad_value ) {
+                api.column(0, {page:'current'} ).data().each( function ( Phase, i ) {
+                    if ( last !== Phase) {
                         $(rows).eq( i ).before(
-                            '<tr class="squad_value_group"><td colspan="42">'+squad_value+'</td></tr>'
+                            '<tr class="Phase_group"><td colspan="42">'+Phase+'</td></tr>'
                         );
 
-                        last = squad_value;
+                        last = Phase;
                     }
                 } );
             },
             data: udon_tracker,
             columns: [
+                {
+                    data: "Phase",
+                    class: "Phase",
+                    title: "Phase",
+                    visible: false
+                },
                 {
                     data: "is_shipstopper_sort",
                     class: "is_shipstopper",
@@ -40,6 +46,7 @@ domo.get('/data/v1/udon_tracker')
                     class: "is_shipstopper",
                     title: "ship stopper"
                 },
+          
                 {
                     data: "squad_value",
                     class: "squad_value",
