@@ -74,36 +74,36 @@ domo.get('/data/v1/udon_tracker')
                     },
                 },
                 { data: "Fix Version/s" , class: "fix-versions" , title: "Fix Version" },
-                { data: "2/8" , title: "2/8", visible: false, },
-                { data: "2/9", title: "2/9", visible: false, },
-                { data: "2/10", title: "2/10", visible: false, },
-                { data: "2/11", title: "2/11", visible: false, },
-                { data: "2/12", title: "2/12", visible: false,},
-                { data: "2/15", title: "2/15", visible: false, },
-                { data: "2/16", title: "2/16", visible: false, },
-                { data: "2/17", title: "2/17", visible: false, },
-                { data: "2/18", title: "2/18", visible: false, },
-                { data: "2/19", title: "2/19" , visible: false,},
-                { data: "2/23", title: "2/23" },
-                { data: "2/24", title: "2/24" },
-                { data: "2/25", title: "2/25" },
-                { data: "2/26", title: "2/26" },
-                { data: "2/29", title: "2/29" },
-                { data: "3/1", title: "3/1" },
-                { data: "3/2", title: "3/2" },
-                { data: "3/3", title: "3/3" },
-                { data: "3/4", title: "3/4" },
-                { data: "3/7", title: "3/7" },
-                { data: "3/8", title: "3/8" },
-                { data: "3/9", title: "3/9" },
-                { data: "3/10", title: "3/10" },
-                { data: "3/11", title: "3/11" },
-                { data: "3/14", title: "3/14" },
-                { data: "3/15", title: "3/15" },
-                { data: "3/16", title: "3/16" },
-                { data: "3/17", title: "3/17" },
-                { data: "3/18", title: "3/18" },
-                { data: "3/21", title: "3/21" },
+                { data: "2/8" , title: "2/8", sortable: false, visible: false, },
+                { data: "2/9", title: "2/9", sortable: false, visible: false, },
+                { data: "2/10", title: "2/10", sortable: false, visible: false, },
+                { data: "2/11", title: "2/11", sortable: false, visible: false, },
+                { data: "2/12", title: "2/12", sortable: false, visible: false,},
+                { data: "2/15", title: "2/15", sortable: false, visible: false, },
+                { data: "2/16", title: "2/16", sortable: false, visible: false, },
+                { data: "2/17", title: "2/17", sortable: false, visible: false, },
+                { data: "2/18", title: "2/18", sortable: false, visible: false, },
+                { data: "2/19", title: "2/19" , sortable: false, visible: false,},
+                { data: "2/23", title: "2/23", sortable: false, },
+                { data: "2/24", title: "2/24", sortable: false, },
+                { data: "2/25", title: "2/25", sortable: false, },
+                { data: "2/26", title: "2/26", sortable: false, },
+                { data: "2/29", title: "2/29", sortable: false, },
+                { data: "3/1", title: "3/1", sortable: false, },
+                { data: "3/2", title: "3/2", sortable: false, },
+                { data: "3/3", title: "3/3", sortable: false, },
+                { data: "3/4", title: "3/4", sortable: false, },
+                { data: "3/7", title: "3/7", sortable: false, },
+                { data: "3/8", title: "3/8", sortable: false, },
+                { data: "3/9", title: "3/9", sortable: false, },
+                { data: "3/10", title: "3/10", sortable: false, },
+                { data: "3/11", title: "3/11", sortable: false, },
+                { data: "3/14", title: "3/14", sortable: false, },
+                { data: "3/15", title: "3/15", sortable: false, },
+                { data: "3/16", title: "3/16", sortable: false, },
+                { data: "3/17", title: "3/17", sortable: false, },
+                { data: "3/18", title: "3/18", sortable: false, },
+                { data: "3/21", title: "3/21", sortable: false, },
             ]
         });
 
@@ -123,9 +123,19 @@ domo.get('/data/v1/udon_tracker')
                 //table.column( i ).visible( false, false );
                 table.column( i ).visible( ! table.column( i ).visible() );
             }
-            table.columns.adjust().draw( false ); // adjust column sizing and redraw
+            // adjust column sizing and redraw
+            table.columns.adjust().draw( false );
 
         } );
+
+        // Reset Sorting
+        $('a.reset-sort').on( 'click', function (e) {
+            e.preventDefault();
+
+            table.order([ 0, 'asc' ]).draw();
+
+        } );
+
 
 } );
 
