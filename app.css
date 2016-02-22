@@ -245,6 +245,10 @@ td {
 .squad_value {
     min-width: 100px;
 }
+.reporter_displayname,
+.assignee_displayname {
+    min-width: 100px;
+}
 .summary {
     min-width: 400px;
 }

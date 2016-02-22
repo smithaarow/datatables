@@ -44,20 +44,29 @@ domo.get('/data/v1/udon_tracker')
                     visible: false
                 },
                 {
-                    data: "issue_key",
-                    class: "issue_key",
-                    title: "Jira Number",
+                    data: "summary",
+                    class: "summary",
+                    title: "Summary",
                     "render": function ( data, type, full, meta ) {
-                        return '<a href="https://onjira.domo.com/browse/'+data+'" target="_blank">'+data+'</a>';
+                        return '<div class="container-overflowing">'+data+'</div>';
                     },
                 },
-                
                 {
-                    data: "is_shipstopper",
-                    class: "is_shipstopper",
-                    title: "Ship Stopper"
+                    data: "assignee_displayname",
+                    class: "assignee_displayname",
+                    title: "Assignee",
+                    "render": function ( data, type, full, meta ) {
+                        return '<div class="container-overflowing">'+data+'</div>';
+                    },
                 },
-          
+                {
+                    data: "reporter_displayname",
+                    class: "reporter_displayname",
+                    title: "Reporter",
+                    "render": function ( data, type, full, meta ) {
+                        return '<div class="container-overflowing">'+data+'</div>';
+                    },
+                },
                 {
                     data: "squad_value",
                     class: "squad_value",
@@ -67,14 +76,19 @@ domo.get('/data/v1/udon_tracker')
                     },
                 },
                 {
-                    data: "summary",
-                    class: "summary",
-                    title: "Summary",
+                    data: "issue_key",
+                    class: "issue_key",
+                    title: "Jira Number",
                     "render": function ( data, type, full, meta ) {
-                        return '<div class="container-overflowing">'+data+'</div>';
+                        return '<a href="https://onjira.domo.com/browse/'+data+'" target="_blank">'+data+'</a>';
                     },
                 },
-                { data: "Fix Version/s" , class: "fix-versions" , title: "Fix Version" },
+                {
+                    data: "is_shipstopper",
+                    class: "is_shipstopper",
+                    title: "Ship Stopper"
+                },
+                { data: "Fix Version/s" , class: "fix-versions" , title: "Fix Version", visible: false},
                 { data: "2/8" , title: "2/8", sortable: false, visible: false, },
                 { data: "2/9", title: "2/9", sortable: false, visible: false, },
                 { data: "2/10", title: "2/10", sortable: false, visible: false, },
@@ -127,7 +141,7 @@ domo.get('/data/v1/udon_tracker')
             // adjust column sizing and redraw
             table.columns.adjust().draw( false );
 
-        } );
+        });
 
         // Reset Sorting
         $('a.reset-sort').on( 'click', function (e) {
@@ -135,16 +149,39 @@ domo.get('/data/v1/udon_tracker')
 
             table.order([ 0, 'asc' ]).draw();
 
-        } );
-        $('.sorting_desc').on( 'click', function (e) {
-            e.preventDefault();
-            console.log('th.sorting-desc clicked');
+        });
 
-            table.order([ 0, 'asc' ]).draw();
+        // Unbind click event on .sorting_desc click
+        $('th').on( 'click.DT', function (e) {
+            //$("th.sorting_desc").unbind("click.DT");
+            $("th.sorting_desc").on("click", function() {
+                console.log('clicky');
+                table.order([ 0, 'asc' ]).draw();
+                //$("th").on('click.DT');
+            });
+            //$("th.sorting_desc").bind("click.DT");
 
-        } );
+        });
 
 
+        //$("th.sorting_desc").bind("click", function() {
+        //    console.log('clicky');
+        //    table.order([ 0, 'asc' ]).draw();
+        //    //$("th.sorting_desc").bind("click.DT");
+        //});
+
+
+        // WIP trying to get a third click to clear sorting on column
+        //if ($('.sorting_desc').length >= 1) {
+        //    table.find("th").off("click.DT");
+        //    $('.sorting_desc').on( 'click', function (e) {
+        //        e.stopPropagation();
+        //        e.preventDefault();
+        //
+        //        table.order([ 0, 'asc' ]).draw();
+        //
+        //    });
+        //}
 
 } );
 
