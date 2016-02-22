@@ -53,6 +53,16 @@ th {
     text-align: left;
     border-bottom: 1px solid rgba(0,0,0,.1);
 }
+th.sorting_asc {
+    background: url('public/images/up.png')  no-repeat right center;
+    background-position: right 5px center;
+    background-size: 10px 6px;
+}
+th.sorting_desc {
+    background: url('public/images/down.png')  no-repeat right center;
+    background-position: right 5px center;
+    background-size: 10px 6px;
+}
 td {
     padding: 4px 8px;
     border-bottom: 1px solid rgba(0,0,0,0.03);

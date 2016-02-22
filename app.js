@@ -35,6 +35,7 @@ domo.get('/data/v1/udon_tracker')
                     data: null,
                     class: "column-index",
                     title: "#",
+                    sortable: false,
                 },
                 {
                     data: "is_shipstopper_sort",
@@ -135,6 +136,14 @@ domo.get('/data/v1/udon_tracker')
             table.order([ 0, 'asc' ]).draw();
 
         } );
+        $('.sorting_desc').on( 'click', function (e) {
+            e.preventDefault();
+            console.log('th.sorting-desc clicked');
+
+            table.order([ 0, 'asc' ]).draw();
+
+        } );
+
 
 
 } );
