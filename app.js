@@ -3,10 +3,11 @@ domo.get('/data/v1/udon_tracker')
     .then(function(udon_tracker){
       console.log("udon_tracker", udon_tracker);
     
-        $('#example').DataTable( {
+        var table = $('#example').DataTable( {
             scrollY:        '75vh',
             scrollCollapse: true,
             paging:         false,
+            order: [[ 0, 'asc' ]],
             drawCallback: function ( settings ) {
                 var api = this.api();
                 var rows = api.rows( {page:'current'} ).nodes();
@@ -30,6 +31,11 @@ domo.get('/data/v1/udon_tracker')
                     visible: false
                 },
                 {
+                    data: null,
+                    class: "column-index",
+                    title: "#",
+                },
+                {
                     data: "is_shipstopper_sort",
                     class: "is_shipstopper",
                     title: "ship stopper",
@@ -38,7 +44,10 @@ domo.get('/data/v1/udon_tracker')
                 {
                     data: "issue_key",
                     class: "issue_key",
-                    title: "Jira Number"
+                    title: "Jira Number",
+                    "render": function ( data, type, full, meta ) {
+                        return '<a href="https://onjira.domo.com/browse/'+data+'" target="_blank">'+data+'</a>';
+                    },
                 },
                 
                 {
@@ -189,7 +198,14 @@ domo.get('/data/v1/udon_tracker')
                     title: "3/21"
                 },
             ]
-    });
+        });
+
+        table.on( 'order.dt search.dt', function () {
+            table.column(1, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                cell.innerHTML = i+1;
+            } );
+        } ).draw();
+
 
 
 } );

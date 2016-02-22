@@ -247,3 +247,6 @@ td {
     color: white;
     font-size: .7rem;
 }
+th.column-index {
+    max-width: 20px;
+}
